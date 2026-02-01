@@ -1,0 +1,375 @@
+<!-- Chosen Palette: Warm Copper/Caramel Theme with Section Tinting -->
+<!-- Application Structure Plan: Stable Vanilla JS Dashboard structure with sequential background colors for flow. Image sources are correctly formatted for dynamic JS rendering. Footer has been adjusted for right-aligned personalized greeting. -->
+<!-- Visualization & Content Choices: User Friction Data -> Doughnut Chart (Chart.js/Canvas). Objectives/Solutions -> Clickable buttons + dynamic content update (JS). Images are integrated into the Solution display for visual context of the product features. CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlainZight UX Case Study Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+    <style>
+        /* Base styles for a clean, paper-like background */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFBF5; /* Soft Cream Background */
+        }
+        /* Custom class for the chart container to ensure responsiveness and control height */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px; 
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px; 
+            max-height: 350px;
+        }
+        /* Style for the sidebar/top nav link */
+        .nav-link {
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .nav-link:hover {
+            color: #B45F06; /* Warm Copper Hover */
+        }
+        .active-mandate {
+            background-color: #B45F06 !important; /* Deep Copper Accent */
+            color: white !important;
+            box-shadow: 0 4px 6px -1px rgba(180, 95, 6, 0.4);
+        }
+        /* Icon styles */
+        .icon {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        .accent-color {
+            color: #B45F06;
+        }
+        /* Sequential Section Coloring */
+        .section-tint-1 { background-color: #FFFBF5; }
+        .section-tint-2 { background-color: #FEF7E6; }
+        .section-tint-3 { background-color: #F8F3EB; }
+        .section-tint-4 { background-color: #F4ECE3; }
+        .section-tint-5 { background-color: #EEE6DD; }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Top Navigation (Visible on all screens, sticky for mobile) -->
+    <header id="top-nav" class="sticky top-0 z-40 bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+            <h1 class="text-2xl font-extrabold accent-color tracking-tight">PlainZight ⚡</h1>
+            <nav class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#header" class="nav-link text-gray-500 hover:accent-color">Intro</a>
+                <a href="#mandates" class="nav-link text-gray-500 hover:accent-color">Objectives</a>
+                <a href="#data" class="nav-link text-gray-500 hover:accent-color">Crisis Data</a>
+                <a href="#solution" class="nav-link text-gray-500 hover:accent-color">The Product</a>
+                <a href="#reflection" class="nav-link text-gray-500 hover:accent-color">Reflection</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto py-10">
+
+        <!-- Header and Personal Introduction (Centered) -->
+        <section id="header" class="section-tint-1 px-4 sm:px-6 lg:px-8 mb-12 text-center pt-8 pb-12">
+            
+            <p class="text-sm font-medium accent-color uppercase tracking-wider">UX Research Case Study: Zillow HBCU Hackathon</p>
+            <h2 class="text-5xl font-extrabold mt-1 text-gray-900 leading-tight">Building Trust with the Next Generation of Homebuyers</h2>
+            
+            <!-- VERBATIM TEXT BLOCK 1 -->
+            <p class="mt-6 text-lg text-gray-700 max-w-4xl mx-auto">
+                Background: Zillow is an American tech real-estate marketplace company, commonly known for being the go-to platform for connecting landlords to renters and buyers. In this project, my team and I will tackle a core problem: how to maintain relevance and consumer trust with the next wave of homebuyers.
+            </p>
+        </section>
+
+        <!-- Context Section -->
+        <section id="context" class="section-tint-2 px-4 sm:px-6 lg:px-8 mb-12 pt-6 pb-12 border-t border-gray-200">
+            <h3 class="text-3xl font-bold text-gray-900 mb-6 text-center">🏠 Context: My Zillow Story</h3>
+            
+            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 max-w-6xl mx-auto">
+                
+                <!-- VERBATIM TEXT BLOCK 2 (Shorter Context Paragraph) -->
+                <p class="text-gray-700 text-left max-w-4xl mx-auto mb-8">
+                    Context: Zillow was my designated company to analyze and solve for in my undergraduate courses, and I also participated in the Zillow HBCU Hackathon with three of my peers allowing me to conduct a deep analysis, iterate products, and ideate marketing campaigns.
+                </p>
+
+                <!-- Key Role and Goal Grid (Aligned with VERBATIM TEXT 3 and 4) -->
+                <div class="grid md:grid-cols-3 gap-6 text-center">
+                    <div class="p-4 rounded-lg bg-gray-50/50 border border-gray-100">
+                        <p class="font-bold text-sm accent-color uppercase">My Core Responsibility</p>
+                        <p class="text-base text-gray-700 mt-1">
+                            Define the emotional user pain points and translate complex economic threats into specific product requirements and a measurable strategic plan.
+                        </p>
+                    </div>
+                    <div class="p-4 rounded-lg bg-gray-50/50 border border-gray-100">
+                        <p class="font-bold text-sm accent-color uppercase">The Overarching Business Goal</p>
+                        <p class="text-base text-gray-700 mt-1">
+                            Counter market anxiety by establishing Zillow as an empathetic, trustworthy resource.
+                        </p>
+                    </div>
+                    <div class="p-4 rounded-lg bg-gray-50/50 border border-gray-100">
+                        <p class="font-bold text-sm accent-color uppercase">Key Metric Target</p>
+                        <p class="text-base text-gray-700 mt-1">
+                            Drive a 15% sales/lease increase and a 10% mobile app download boost by January 2024.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Objectives and Research Section -->
+        <section id="mandates" class="section-tint-3 px-4 sm:px-6 lg:px-8 mb-12 pt-6 pb-12 border-t border-gray-200">
+            <h3 class="text-3xl font-bold text-gray-900 mb-4 text-center">💔 The Core Problem & Product Objectives</h3>
+            <p class="mb-6 text-gray-700 max-w-4xl mx-auto text-center">The Hackathon required us to solve three core, non-negotiable **objectives** that directly addressed the anxiety, distrust, and economic barriers faced by our target users.</p>
+
+            <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <!-- Objective 1 -->
+                <button id="mandate-1" class="mandate-button flex flex-col items-center p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1 active-mandate" data-mandate="1">
+                    <span class="icon mb-2" role="img" aria-label="Compass">🧭</span>
+                    <span class="font-semibold text-center">User-Friendly Focus</span>
+                    <span class="text-xs text-center mt-1 text-gray-200">Centralize Zillow's services into one, low-anxiety application.</span>
+                </button>
+                <!-- Objective 2 -->
+                <button id="mandate-2" class="mandate-button flex flex-col items-center p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1" data-mandate="2">
+                    <span class="icon mb-2" role="img" aria-label="Lock">🔒</span>
+                    <span class="font-semibold text-center">Ensure Accuracy</span>
+                    <span class="text-xs text-center mt-1 text-gray-500">Develop tech to ensure the accuracy of home valuations.</span>
+                </button>
+                <!-- Objective 3 -->
+                <button id="mandate-3" class="mandate-button flex flex-col items-center p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1" data-mandate="3">
+                    <span class="icon mb-2" role="img" aria-label="Scales">⚖️</span>
+                    <span class="font-semibold text-center">Mitigate Bias</span>
+                    <span class="text-xs text-center mt-1 text-gray-500">Implement measures to mitigate bias in housing listings.</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Data Deep-Dive Section (Visualization) -->
+        <section id="data" class="section-tint-4 px-4 sm:px-6 lg:px-8 mb-12 pt-6 pb-12 border-t border-gray-200">
+            <h3 class="text-3xl font-bold text-gray-900 mb-4 text-center">📊 Data Deep-Dive: The Emotional User Crisis</h3>
+            <p class="mb-6 text-gray-700 max-w-3xl mx-auto text-center">My secondary research (Market Trends, Renter Stress Reports) validated that the problem wasn't just financial—it was deeply emotional. This insight was the foundation for designing an empathetic solution.</p>
+
+            <div class="bg-white p-6 rounded-xl shadow-lg max-w-xl mx-auto">
+                <h4 class="text-xl font-semibold mb-3 text-gray-900 text-center">Breakdown of User Friction Components</h4>
+                <div class="chart-container">
+                    <canvas id="frictionChart"></canvas>
+                </div>
+                <p class="mt-4 text-sm text-gray-600 text-center">
+                    Insight: The user is overwhelmed and alone. This data breakdown confirmed that **Emotional Anxiety** and **Trust Deficits** were the biggest barriers PlainZight needed to overcome.
+                </p>
+            </div>
+        </section>
+
+        <!-- Solution Section (Interactive Feature Mapping) -->
+        <section id="solution" class="section-tint-5 px-4 sm:px-6 lg:px-8 mb-12 pt-6 pb-12 border-t border-gray-200">
+            <h3 class="text-3xl font-bold text-gray-900 mb-4 text-center">🛠️ The PlainZight Product: Problem-to-Feature Mapping</h3>
+            <p class="mb-6 text-gray-700 max-w-4xl mx-auto text-center">The solution, PlainZight, was a unified product suite designed to resolve the objectives by pivoting Zillow from a data tool to an empathy facilitator. Click any objective above to see its core solution component and feature design.</p>
+
+            <div class="bg-white p-6 rounded-xl shadow-lg max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
+                
+                <!-- Product Image/Mockup Display -->
+                <div id="product-mockup" class="w-full">
+                    <!-- Default image (Home Screen Context) - This image is for Objective 1 -->
+                    <img src="uploaded:credit care mock up.jpg-cbafcec3-0b4a-4d00-a6c9-6a1ff56c0ac0" 
+                         alt="PlainZight Credit Care Mockup" 
+                         class="rounded-lg shadow-xl mx-auto w-full h-auto">
+                </div>
+
+                <!-- Solution Description Display -->
+                <div id="solution-display" class="transition-opacity duration-300">
+                    <!-- Default content for Objective 1 (User-Friendly Focus) -->
+                    <h4 class="text-2xl font-bold accent-color">PlainZight Credit Care (Unified Financial Dashboard)</h4>
+                    <p class="mt-2 text-lg text-gray-700">
+                        Objective Fulfilled: User-Friendly Focus
+                    </p>
+                    <p class="mt-3 text-gray-600">
+                        The Insight: Users are overwhelmed by fragmented loan/search processes. They need a single, low-anxiety journey.
+                    </p>
+                    <p class="mt-1 text-gray-600">
+                        The Solution: This dashboard integrates mortgage readiness and financial education, acting as the centralized hub to continuously improve financial well-being while hunting for a home. This reduces anxiety and drives app usage.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Impact Section -->
+        <section id="impact" class="section-tint-4 px-4 sm:px-6 lg:px-8 pt-6 pb-12 border-t border-gray-200">
+            <h3 class="text-3xl font-bold text-gray-900 mb-4 text-center">📈 Impact & Next Steps</h3>
+
+            <div class="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h4 class="text-xl font-semibold mb-3 accent-color">Product Impact I Drove</h4>
+                    <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                        <li>Problem Resolution: The PlainZight Zestimate Component immediately addressed the core brand weakness (Zestimate scrutiny), building user trust.</li>
+                        <li>Ethical Design: Inclusion of the Fair Market Filter demonstrated proactive commitment to the mitigate bias objective, positioning Zillow as an ethical market leader.</li>
+                        <li>Metric Validation: The unified design was estimated to drive the key goal of 10% increase in mobile app usage by reducing user anxiety.</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h4 class="text-xl font-semibold mb-3 accent-color">My Recommendations Moving Forward</h4>
+                    <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                        <li>Trust Validation: Conduct follow-up usability studies on the new Zestimate Component to confirm that user trust signals have improved post-implementation.</li>
+                        <li>Bias Testing: Develop an internal audit to test the effectiveness of the Fair Market Filter in providing equitable outcomes across diverse user demographics.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reflection Section -->
+        <section id="reflection" class="section-tint-3 px-4 sm:px-6 lg:px-8 pt-6 pb-12 border-t border-gray-200">
+            <h3 class="text-3xl font-bold text-gray-900 mb-6 text-center">📝 Reflection: Lessons Learned</h3>
+            <div class="bg-white p-6 rounded-xl shadow-lg max-w-5xl mx-auto text-gray-700">
+                <p class="mb-3">
+                    I truly enjoyed working on this project, even though we faced limited resources and several setbacks along the way. Despite these challenges, I believe our team developed an effective and well-researched strategy to address the core problems identified in our research.
+                </p>
+                <p class="mb-3">
+                    The timing of the hackathon made things particularly difficult, as it coincided with exam season, which caused scheduling conflicts within the team. Coming from a non-technical background in undergrad also presented its own challenges. While I contributed heavily to the research, planning, and strategic development, there were moments when my lack of technical experience prevented me from executing certain tasks independently. This sometimes meant having to wait on others to complete pieces of the project before moving forward, which tested my patience and adaptability.
+                </p>
+                <p>
+                    Still, this experience was incredibly rewarding. I learned about various technical tools and concepts—what an API is, how to use GitHub, and even got to explore design for the first time. Beyond the technical growth, I gained a deeper appreciation for teamwork, communication, and balancing strengths within a group. Overall, this project pushed me out of my comfort zone and helped me build confidence in areas I once found intimidating.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer with Personal Greeting -->
+    <footer class="bg-white py-8 text-sm shadow-inner">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            
+            <!-- Copyright / Project Info (Left Aligned) -->
+            <p class="text-gray-500">PlainZight UX Case Study | Adonista Bob-Grey</p>
+
+            <!-- Personal Blurb (Right Aligned) -->
+            <div class="flex items-center space-x-3">
+                <p class="text-gray-700 font-medium">Hi, I am Adonista! Thank you for checking out my project.</p>
+                <img src="uploaded:Headshot 2.jpg-0104c326-c829-42ad-b2ad-9b851f687154" 
+                     alt="Adonista's Headshot" 
+                     class="w-10 h-10 rounded-full object-cover shadow">
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // New Chart Data for Doughnut: Breakdown of the user friction crisis (100%)
+            const frictionData = {
+                labels: ['Emotional Anxiety (Stress/Overwhelm)', 'Distrust in Zestimate Accuracy', 'Process Fragmentation (Search/Loan Complexity)'],
+                data: [45, 35, 20], // Total 100%
+                colors: ['#D97706', '#B45F06', '#92400E'] // Orange/Copper Tones
+            };
+
+            // Chart Initialization (Doughnut Chart)
+            const ctx = document.getElementById('frictionChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: frictionData.labels,
+                    datasets: [{
+                        data: frictionData.data,
+                        backgroundColor: frictionData.colors,
+                        borderColor: '#FFFBF5', // Matches background for separation
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 15,
+                                boxWidth: 12
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        },
+                        title: {
+                            display: false
+                        }
+                    }
+                }
+            });
+
+            // Interactive Objective Logic
+            const mandateButtons = document.querySelectorAll('.mandate-button');
+            const solutionDisplay = document.getElementById('solution-display');
+            const productMockup = document.getElementById('product-mockup');
+
+            // Solution data structure containing image file names
+            // CRITICAL FIX: Image paths must be correctly defined for dynamic rendering
+            const solutions = {
+                '1': {
+                    title: 'PlainZight Credit Care (Unified Financial Dashboard)',
+                    objective: 'User-Friendly Focus',
+                    insight: 'Users are overwhelmed by fragmented loan/search processes. They need a single, low-anxiety journey.',
+                    solution: 'This dashboard integrates mortgage readiness and financial education, acting as the centralized hub to continuously improve financial well-being while hunting for a home. This reduces anxiety and drives app usage.',
+                    image: 'uploaded:credit care mock up.jpg-cbafcec3-0b4a-4d00-a6c9-6a1ff56c0ac0' // Credit Care Mockup
+                },
+                '2': {
+                    title: 'PlainZight Zestimate (Enhanced Accuracy Component)',
+                    objective: 'Ensure Accuracy',
+                    insight: 'Users need human-vetted trust signals to counter purely algorithmic skepticism (fixing the core Zestimate weakness).',
+                    solution: 'This component integrates agent-verified and county data alongside the core Zestimate to boost confidence, directly addressing the brand trust issue.',
+                    image: 'uploaded:mock up.jpg-3c72bc16-6059-4613-bc8f-a2b3ae47e113' // Enhanced Zestimate Mockup
+                },
+                '3': {
+                    title: '"Fair Market Filter" Tool',
+                    objective: 'Mitigate Bias',
+                    insight: 'The platform must proactively empower all users with objective information to ensure equitable outcomes and mitigate systemic bias.',
+                    solution: 'This tool analyzes local market data for disparities, providing transparent pricing guidance and an ethical checkmark on listings.',
+                    image: 'uploaded:plainzight mock up.jpg-51c5de3b-ff62-47ff-9dfa-20e94868fdca' // Main Dashboard Mockup (as proxy for filter)
+                }
+            };
+
+            mandateButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const mandateId = this.getAttribute('data-mandate');
+                    const solution = solutions[mandateId];
+
+                    // Update button styling
+                    mandateButtons.forEach(btn => btn.classList.remove('active-mandate'));
+                    this.classList.add('active-mandate');
+
+                    // Update mockup image
+                    productMockup.innerHTML = `<img src="${solution.image}" alt="${solution.title} Mockup" class="rounded-lg shadow-xl mx-auto w-full h-auto">`;
+
+                    // Update solution display content
+                    solutionDisplay.innerHTML = `
+                        <h4 class="text-2xl font-bold accent-color">${solution.title}</h4>
+                        <p class="mt-2 text-lg text-gray-700">
+                            Objective Fulfilled: ${solution.objective}
+                        </p>
+                        <p class="mt-3 text-gray-600">
+                            The Insight: ${solution.insight}
+                        </p>
+                        <p class="mt-1 text-gray-600">
+                            The Solution: ${solution.solution}
+                        </p>
+                    `;
+                });
+            });
+
+            // Set Objective 1 as active on load
+            document.getElementById('mandate-1').click();
+        });
+    </script>
+</body>
+</html>
